@@ -1,4 +1,4 @@
--- Make yank and paste from clipboard
+-- Sync Neovim with the system clipboard
 vim.opt.clipboard = "unnamedplus"
 
 -- Add line numbers
