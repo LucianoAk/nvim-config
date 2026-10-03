@@ -13,4 +13,4 @@ git clone https://github.com/LucianoAk/nvim-minimal-config.git ~/.config/nvim
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
