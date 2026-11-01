@@ -13,3 +13,8 @@ vim.g.maplocalleader = " "
 vim.opt.autochdir = true
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 20
+
+-- Setup tabsize
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
