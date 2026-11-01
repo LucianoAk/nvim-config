@@ -49,3 +49,8 @@ vim.keymap.set("n", "<leader>e", function()
     vim.cmd("Lexplore!")
   end
 end, { silent = true, desc = "Toggle or Focus File Explorer Sidebar" })
+
+-- #########################################
+-- # Turn off Search Highlight using <Esc> #
+-- #########################################
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { silent = true }
