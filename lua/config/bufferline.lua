@@ -21,10 +21,10 @@ function _G.get_bufferline()
   return s
 end
 
--- Keymaps
 vim.opt.showtabline = 2
 vim.opt.tabline = "%!v:lua.get_bufferline()"
 
+-- Keymaps
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
