@@ -24,7 +24,9 @@ local function toggle_terminal()
   vim.cmd("startinsert")
 end
 
-vim.keymap.set({ "n", "t" }, "<C-\\>", toggle_terminal, { desc = "Toggle Main Terminal" })
+for _, key in ipairs({ "<C-\\>", "<C-/>" }) do
+    vim.keymap.set({ "n", "t" }, key, toggle_terminal, { desc = "Toggle Main Terminal" })
+end
 
 -- ###################
 -- # Toggle Explorer #
