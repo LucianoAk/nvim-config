@@ -1,5 +1,5 @@
 # Minimal Neovim Configuration
-My personal minimal Neovim configuration using only built-in features.
+My personal minimal Neovim configuration.
 
 ## Installation
 
