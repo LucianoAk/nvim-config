@@ -69,10 +69,10 @@ vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to lower split' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to upper split' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right split' })
 
--- ########################################
--- # Replace word in the selection keymap #
--- ########################################
-vim.keymap.set("v", "<leader>r", function()
+-- ###################################
+-- # Replace in the selection keymap #
+-- ###################################
+local function replace_selection()
   local start_line = math.min(vim.fn.line("v"), vim.fn.line("."))
   local end_line = math.max(vim.fn.line("v"), vim.fn.line("."))
 
@@ -93,4 +93,6 @@ vim.keymap.set("v", "<leader>r", function()
   if not ok then
     vim.notify("Pattern not found: " .. target, vim.log.levels.ERROR)
   end
-end, { desc = "Replace in the selection" })
+end
+
+vim.keymap.set("v", "<leader>r", replace_selection, { desc = "Replace in the selection" })
