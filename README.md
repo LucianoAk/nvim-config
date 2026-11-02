@@ -1,12 +1,13 @@
-# Minimal Neovim Configuration
-My personal minimal Neovim configuration.
+# Neovim Configuration
+
+My personal Neovim configuration.
 
 ## Installation
 
 Clone the repository directly into your Neovim configuration directory:
 
 ```bash
-git clone https://github.com/LucianoAk/nvim-minimal-config.git ~/.config/nvim
+git clone https://github.com/LucianoAk/nvim-config.git ~/.config/nvim
 ```
 
 *Note: If you have an existing configuration, be sure to back it up before cloning.*
