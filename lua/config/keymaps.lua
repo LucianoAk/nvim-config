@@ -29,26 +29,32 @@ vim.keymap.set({ "n", "t" }, "<C-\\>", toggle_terminal, { desc = "Toggle Main Te
 -- ###################
 -- # Toggle Explorer #
 -- ###################
-vim.keymap.set("n", "<leader>e", function()
-  local netrw_win = nil
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.api.nvim_get_option_value("filetype", { buf = buf }) == "netrw" then
-      netrw_win = win
-      break
+local explorer_buf = nil
+local explorer_win = nil
+
+local function toggle_explorer()
+  if explorer_win and vim.api.nvim_win_is_valid(explorer_win) then
+    if vim.api.nvim_get_current_win() == explorer_win then
+      vim.api.nvim_win_hide(explorer_win)
+      explorer_win = nil
+    else
+      vim.api.nvim_set_current_win(explorer_win)
     end
+    return
   end
 
-  if netrw_win then
-    if vim.api.nvim_get_current_win() == netrw_win then
-      vim.cmd("Lexplore!")
-    else
-      vim.api.nvim_set_current_win(netrw_win)
-    end
+  vim.cmd("topleft 30vsplit")
+  explorer_win = vim.api.nvim_get_current_win()
+
+  if explorer_buf and vim.api.nvim_buf_is_valid(explorer_buf) then
+    vim.api.nvim_win_set_buf(explorer_win, explorer_buf)
   else
-    vim.cmd("Lexplore!")
+    vim.cmd("edit .")
+    explorer_buf = vim.api.nvim_get_current_buf()
   end
-end, { silent = true, desc = "Toggle or Focus File Explorer Sidebar" })
+end
+
+vim.keymap.set("n", "<leader>e", toggle_explorer, { silent = true, desc = "Toggle or Focus File Explorer Sidebar" })
 
 -- #########################################
 -- # Turn off Search Highlight using <Esc> #
