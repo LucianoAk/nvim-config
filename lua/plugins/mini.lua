@@ -19,9 +19,10 @@ return {
 
       -- ### mini.snippets ###
       local gen_loader = require('mini.snippets').gen_loader
+      local config_path = vim.fn.stdpath("config")
       require('mini.snippets').setup({
         snippets = {
-          gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+          gen_loader.from_file(config_path .. "/snippets/global.json"),
           gen_loader.from_lang(),
         }
       })
