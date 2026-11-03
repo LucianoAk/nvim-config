@@ -1,0 +1,20 @@
+{
+  "Create Snippet": {
+    "prefix": "newsnippet",
+    "body": [
+      "\"${1:Snippet Title}\": {",
+      "\t\"prefix\": \"${2:trigger_word}\",",
+      "\t\"body\": [",
+      "\t\t\"${3:Line one}\"",
+      "\t],",
+      "\t\"description\": \"${4:Description of what this snippet does}\"",
+      "}$0"
+    ],
+    "description": "Generate a template for a new snippet"
+  },
+  "Insert Comment Tag": {
+    "prefix": "todo",
+    "body": "${1|TODO,BUG,FIXME,NOTE,HACK,WARN,INFO,PERF,TEST,REFACTOR|}: $0",
+    "description": "Insert an interactive comment tag (TODO, BUG, FIXME, etc.)"
+  }
+}
