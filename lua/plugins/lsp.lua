@@ -10,6 +10,7 @@ return {
 				ensure_installed = {
 					"stylua",
 					"google-java-format",
+					"xmlformatter",
 				},
 				auto_update = false,
 				run_on_start = true,
