@@ -11,6 +11,10 @@ return {
 				MiniPick.builtin.files()
 			end, { desc = "Find Project Files" })
 
+			vim.keymap.set("n", "<leader>bb", function()
+				MiniPick.builtin.buffers()
+			end, { desc = "Find Project Files" })
+
 			-- ### mini.pairs ###
 			require("mini.pairs").setup()
 
