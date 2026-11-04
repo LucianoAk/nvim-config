@@ -19,3 +19,6 @@ vim.g.netrw_hide = 1
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+-- Disable line wrap
+vim.opt.wrap = false
