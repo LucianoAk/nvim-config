@@ -26,7 +26,7 @@ return {
 		local config_path = vim.fn.stdpath("config")
 		require("mini.snippets").setup({
 			snippets = {
-				gen_loader.from_file(config_path .. "/snippets/global.json"),
+				gen_loader.from_file(config_path .. "/snippets/global.lua"),
 				gen_loader.from_lang(),
 			},
 		})
