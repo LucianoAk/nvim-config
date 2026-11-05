@@ -35,16 +35,6 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
-		opts = {
-			servers = {
-				jdtls = {},
-			},
-			setup = {
-				jdtls = function()
-					return true
-				end,
-			},
-		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
