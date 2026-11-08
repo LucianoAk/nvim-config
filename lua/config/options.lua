@@ -22,3 +22,6 @@ vim.opt.expandtab = true
 
 -- Disable line wrap
 vim.opt.wrap = false
+
+-- Set colorscheme
+vim.cmd.colorscheme("catppuccin")
