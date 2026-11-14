@@ -8,6 +8,7 @@ return {
 				lua = { "stylua" },
 				java = { "google-java-format" },
 				xml = { "xmlformatter" },
+				c = { "clang-format" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

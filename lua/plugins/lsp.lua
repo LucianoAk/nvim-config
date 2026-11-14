@@ -12,6 +12,7 @@ return {
 					"stylua",
 					"google-java-format",
 					"xmlformatter",
+					"clang-format",
 				},
 				auto_update = false,
 				run_on_start = true,
@@ -25,6 +26,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"jdtls",
+				"clangd",
 			},
 			automatic_enable = {
 				exclude = {
