@@ -25,3 +25,6 @@ vim.opt.wrap = false
 
 -- Set colorscheme
 vim.cmd.colorscheme("catppuccin")
+
+-- For Windows, use powershell as terminal instead of cmd
+-- vim.o.shell = "powershell"
