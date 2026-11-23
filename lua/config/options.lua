@@ -25,6 +25,10 @@ vim.opt.wrap = false
 
 -- Set colorscheme
 vim.cmd.colorscheme("catppuccin")
+vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
 
 -- For Windows, use powershell as terminal instead of cmd
 -- vim.o.shell = "powershell"
