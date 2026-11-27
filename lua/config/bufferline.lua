@@ -45,7 +45,28 @@ local function move_buffer_in_order(direction)
 	end
 end
 
+local buffer_mode_active = false
+local buffer_mode_keymaps = {}
+
+local function exit_buffer_mode()
+	if not buffer_mode_active then
+		return
+	end
+
+	for key, _ in pairs(buffer_mode_keymaps) do
+		pcall(vim.keymap.del, "n", key)
+	end
+
+	buffer_mode_active = false
+	print("Exited buffer mode")
+end
+
 local function enter_buffer_mode(config)
+	if buffer_mode_active then
+		return
+	end
+	buffer_mode_active = true
+
 	config = vim.tbl_deep_extend("force", {
 		start_on_move = true,
 		move_left = "h",
@@ -57,6 +78,7 @@ local function enter_buffer_mode(config)
 	}, config or {})
 
 	local move = config.start_on_move
+
 	print(
 		string.format(
 			"Buffer Mode [MOVE: %s] — [%s/%s] move | [%s] move ON | [%s] move OFF | [%s] delete | [%s] exit",
@@ -70,37 +92,43 @@ local function enter_buffer_mode(config)
 		)
 	)
 
-	while true do
-		vim.cmd("redraw")
-		local char = vim.fn.getcharstr()
-
-		if char == config.move_left then
+	buffer_mode_keymaps = {
+		[config.move_left] = function()
 			if move then
 				move_buffer_in_order("left")
 			else
 				vim.cmd("bprev")
 			end
-		elseif char == config.move_right then
+		end,
+
+		[config.move_right] = function()
 			if move then
 				move_buffer_in_order("right")
 			else
 				vim.cmd("bnext")
 			end
-		elseif char == config.move_off then
+		end,
+
+		[config.move_off] = function()
 			move = false
-			print("Buffer Mode [MOVE: OFF (Cycling)]")
-		elseif char == config.move_on then
+		end,
+
+		[config.move_on] = function()
 			move = true
-			print("Buffer Mode [MOVE: ON (Shifting)]")
-		elseif char == config.delete then
+		end,
+
+		[config.delete] = function()
 			vim.cmd("bdelete")
-			print("Buffer deleted.")
-		elseif char == config.exit then
-			print("Exited buffer mode.")
-			break
-		else
-			print(string.format("Unknown key: %s", char))
-		end
+		end,
+
+		[config.exit] = exit_buffer_mode,
+	}
+
+	for key, callback in pairs(buffer_mode_keymaps) do
+		vim.keymap.set("n", key, callback, {
+			noremap = true,
+			silent = true,
+		})
 	end
 end
 
