@@ -2,7 +2,7 @@ return {
 	["Spring Boot Request Mapping"] = {
 		prefix = "req",
 		body = {
-			'@${1|GetMapping,PostMapping,PutMapping,DeleteMapping|}(${2:"/${3:path}"})',
+			'@${1|GetMapping,PostMapping,PutMapping,DeleteMapping,PatchMapping|}(${2:"/${3:path}"})',
 			"public ResponseEntity<${4:ResponseDTO}> ${5:methodName}(",
 			"\t${6|@PathVariable UUID id,@RequestParam String param,@RequestBody @Valid RequestDTO request,@PathVariable UUID id\\, @RequestBody @Valid RequestDTO request|}",
 			") {",
@@ -17,7 +17,7 @@ return {
 			"@ExceptionHandler(${1:CustomException}.class)",
 			"public ResponseEntity<ErrorResponse> handle${2:CustomException}(",
 			"\t${1:CustomException} e) {",
-			"\tHttpStatus status = HttpStatus.${1:BAD_REQUEST};",
+			"\tHttpStatus status = HttpStatus.${3:BAD_REQUEST};",
 			"\treturn ResponseEntity.status(status).body(new ErrorResponse(status, e.getMessage()));",
 			"}$0",
 		},
