@@ -69,13 +69,13 @@ end
 
 vim.keymap.set("v", "<leader>r", replace_selection, { desc = "Replace in the selection" })
 
---- ##############################
---- # Bufferline keymaps:        #
---- # - Next buffer              #
---- # - Prev buffer              #
---- # - Delete current buffer    #
---- # - Interactive Buffer Mode  #
---- ##############################
+-- ##############################
+-- # Bufferline keymaps:        #
+-- # - Next buffer              #
+-- # - Prev buffer              #
+-- # - Delete current buffer    #
+-- # - Interactive Buffer Mode  #
+-- ##############################
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
