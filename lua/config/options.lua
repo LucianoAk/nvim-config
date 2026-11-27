@@ -9,12 +9,6 @@ vim.opt.relativenumber = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Change explorer
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 4
-vim.g.netrw_hide = 1
-
 -- Setup tabsize
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
