@@ -4,3 +4,10 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.bo.buflisted = false
 	end,
 })
+
+-- Update the tabline visibility whenever the buffer list changes
+vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter" }, {
+	callback = function()
+		vim.opt.showtabline = get_bufferline_visibility()
+	end,
+})

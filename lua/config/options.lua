@@ -25,7 +25,6 @@ vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
 
 -- Bufferline configuration
-vim.opt.showtabline = 1
 vim.opt.tabline = "%!v:lua.get_bufferline()"
 
 -- Hide eob(End Of Buffer) characters

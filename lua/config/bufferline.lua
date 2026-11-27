@@ -155,6 +155,12 @@ local function enter_buffer_mode(config)
 	end
 end
 
+local function get_bufferline_visibility()
+	update_buffer_order()
+
+	return #buffer_order >= 2 and 2 or 0
+end
+
 local function get_bufferline()
 	update_buffer_order()
 	local s = ""
@@ -174,4 +180,5 @@ local function get_bufferline()
 end
 
 _G.enter_buffer_mode = enter_buffer_mode
+_G.get_bufferline_visibility = get_bufferline_visibility
 _G.get_bufferline = get_bufferline
