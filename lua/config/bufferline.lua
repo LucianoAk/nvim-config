@@ -58,7 +58,6 @@ local function exit_buffer_mode()
 	end
 
 	buffer_mode_active = false
-	print("Exited buffer mode")
 end
 
 local function enter_buffer_mode(config)
@@ -79,18 +78,32 @@ local function enter_buffer_mode(config)
 
 	local move = config.start_on_move
 
-	print(
-		string.format(
-			"Buffer Mode [MOVE: %s] — [%s/%s] move | [%s] move ON | [%s] move OFF | [%s] delete | [%s] exit",
-			move and "ON" or "OFF",
-			config.move_left,
-			config.move_right,
-			config.move_on,
-			config.move_off,
-			config.delete,
-			config.exit
-		)
-	)
+	local function print_buffer_mode_ui(active_key)
+		if active_key == config.exit then
+			print("Exited buffer mode")
+			return
+		end
+		vim.api.nvim_echo({
+			{ "Buffer Mode ", "Title" },
+			{ "[MOVE: " },
+			{ move and "ON" or "OFF", move and "DiagnosticOk" or "DiagnosticError" },
+			{ "] — " },
+			{ "[" .. config.move_left .. "]", active_key == config.move_left and "IncSearch" or "Special" },
+			{ "/" },
+			{ "[" .. config.move_right .. "]", active_key == config.move_right and "IncSearch" or "Special" },
+			{ " move | " },
+			{ "[" .. config.move_on .. "]", active_key == config.move_on and "IncSearch" or "Special" },
+			{ " move ON | " },
+			{ "[" .. config.move_off .. "]", active_key == config.move_off and "IncSearch" or "Special" },
+			{ " move OFF | " },
+			{ "[" .. config.delete .. "]", active_key == config.delete and "IncSearch" or "Special" },
+			{ " delete | " },
+			{ "[" .. config.exit .. "]", "Special" },
+			{ " exit" },
+		}, false, {})
+	end
+
+	print_buffer_mode_ui()
 
 	buffer_mode_keymaps = {
 		[config.move_left] = function()
@@ -99,6 +112,8 @@ local function enter_buffer_mode(config)
 			else
 				vim.cmd("bprev")
 			end
+
+			print_buffer_mode_ui(config.move_left)
 		end,
 
 		[config.move_right] = function()
@@ -107,21 +122,29 @@ local function enter_buffer_mode(config)
 			else
 				vim.cmd("bnext")
 			end
+
+			print_buffer_mode_ui(config.move_right)
 		end,
 
 		[config.move_off] = function()
 			move = false
+			print_buffer_mode_ui(config.move_off)
 		end,
 
 		[config.move_on] = function()
 			move = true
+			print_buffer_mode_ui(config.move_on)
 		end,
 
 		[config.delete] = function()
 			vim.cmd("bdelete")
+			print_buffer_mode_ui(config.delete)
 		end,
 
-		[config.exit] = exit_buffer_mode,
+		[config.exit] = function()
+			exit_buffer_mode()
+			print_buffer_mode_ui(config.exit)
+		end,
 	}
 
 	for key, callback in pairs(buffer_mode_keymaps) do
