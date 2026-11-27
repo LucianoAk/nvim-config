@@ -79,4 +79,4 @@ vim.keymap.set("v", "<leader>r", replace_selection, { desc = "Replace in the sel
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
-vim.keymap.set("n", "<leader>bm", _G.enter_buffer_mode, { desc = "Interactive Buffer Mode" })
+vim.keymap.set("n", "<leader>bm", Bufferline.enter_buffer_mode, { desc = "Interactive Buffer Mode" })

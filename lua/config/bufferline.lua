@@ -179,6 +179,10 @@ local function get_bufferline()
 	return s
 end
 
-_G.enter_buffer_mode = enter_buffer_mode
-_G.get_bufferline_visibility = get_bufferline_visibility
-_G.get_bufferline = get_bufferline
+local Bufferline = {}
+
+Bufferline.enter_buffer_mode = enter_buffer_mode
+Bufferline.get_bufferline_visibility = get_bufferline_visibility
+Bufferline.get_bufferline = get_bufferline
+
+_G.Bufferline = Bufferline
