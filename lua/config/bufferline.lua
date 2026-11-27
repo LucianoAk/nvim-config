@@ -175,6 +175,3 @@ end
 
 _G.enter_buffer_mode = enter_buffer_mode
 _G.get_bufferline = get_bufferline
-
-vim.opt.showtabline = 2
-vim.opt.tabline = "%!v:lua.get_bufferline()"
