@@ -28,5 +28,10 @@ vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
 vim.opt.showtabline = 1
 vim.opt.tabline = "%!v:lua.get_bufferline()"
 
+-- Hide eob(End Of Buffer) characters
+vim.opt.fillchars = {
+	eob = " ",
+}
+
 -- For Windows, use powershell as terminal instead of cmd
 -- vim.o.shell = "powershell"
