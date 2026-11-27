@@ -4,7 +4,9 @@ return {
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
 		config = function()
-			require("conform").setup({
+			local conform = require("conform")
+
+			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
 					java = { "google-java-format" },
@@ -18,7 +20,7 @@ return {
 			})
 
 			vim.keymap.set({ "n", "v" }, "<leader>f", function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				conform.format({ async = true, lsp_fallback = true })
 			end, { desc = "Format file or range" })
 		end,
 	},
