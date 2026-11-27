@@ -128,6 +128,21 @@ return {
 					MiniFiles.open()
 				end
 			end, { desc = "Open explorer" })
+
+			-- ### mini.ai ###
+			require("mini.ai").setup({
+				custom_textobjects = {
+					e = {
+						{
+							"%u+%f[%l]",
+							"%u[%l%d]+",
+							"%f[%w][%l%d]+",
+							"%d+",
+						},
+						"^().*()$",
+					},
+				},
+			})
 		end,
 	},
 }
