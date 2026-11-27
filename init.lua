@@ -1,5 +1,5 @@
 require("config.options")
-require("config.keymaps")
 require("config.autocmds")
 require("config.bufferline")
 require("config.lazy")
+require("config.keymaps")
