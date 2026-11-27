@@ -45,38 +45,61 @@ local function move_buffer_in_order(direction)
 	end
 end
 
-local function enter_buffer_mode()
-	local move = true
-	print("Buffer Mode [MOVE: ON] — [h/l] move | [k] move ON | [j] move OFF | [d] delete | [Esc] exit")
+local function enter_buffer_mode(config)
+	config = vim.tbl_deep_extend("force", {
+		start_on_move = true,
+		move_left = "h",
+		move_right = "l",
+		move_on = "k",
+		move_off = "j",
+		delete = "d",
+		exit = "q",
+	}, config or {})
+
+	local move = config.start_on_move
+	print(
+		string.format(
+			"Buffer Mode [MOVE: %s] — [%s/%s] move | [%s] move ON | [%s] move OFF | [%s] delete | [%s] exit",
+			move and "ON" or "OFF",
+			config.move_left,
+			config.move_right,
+			config.move_on,
+			config.move_off,
+			config.delete,
+			config.exit
+		)
+	)
 
 	while true do
 		vim.cmd("redraw")
 		local char = vim.fn.getcharstr()
 
-		if char == "h" then
+		if char == config.move_left then
 			if move then
 				move_buffer_in_order("left")
 			else
 				vim.cmd("bprev")
 			end
-		elseif char == "l" then
+		elseif char == config.move_right then
 			if move then
 				move_buffer_in_order("right")
 			else
 				vim.cmd("bnext")
 			end
-		elseif char == "j" then
+		elseif char == config.move_off then
 			move = false
 			print("Buffer Mode [MOVE: OFF (Cycling)]")
-		elseif char == "k" then
+		elseif char == config.move_on then
 			move = true
 			print("Buffer Mode [MOVE: ON (Shifting)]")
-		elseif char == "d" then
+		elseif char == config.delete then
 			vim.cmd("bdelete")
 			print("Buffer deleted.")
-		else
+		elseif char == config.exit then
 			print("Exited buffer mode.")
 			break
+		else
+			print(string.format("Unknown key: %s", char))
 		end
 	end
 end
