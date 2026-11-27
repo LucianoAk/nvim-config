@@ -79,39 +79,4 @@ vim.keymap.set("v", "<leader>r", replace_selection, { desc = "Replace in the sel
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete current buffer" })
-
-vim.keymap.set("n", "<leader>bm", function()
-	local move = true
-	print("Buffer Mode [MOVE: ON] — [h/l] move | [k] move ON | [j] move OFF | [d] delete | [Esc] exit")
-
-	while true do
-		vim.cmd("redraw")
-		local char = vim.fn.getcharstr()
-
-		if char == "h" then
-			if move then
-				_G.move_buffer_in_order("left")
-			else
-				vim.cmd("bprev")
-			end
-		elseif char == "l" then
-			if move then
-				_G.move_buffer_in_order("right")
-			else
-				vim.cmd("bnext")
-			end
-		elseif char == "j" then
-			move = false
-			print("Buffer Mode [MOVE: OFF (Cycling)]")
-		elseif char == "k" then
-			move = true
-			print("Buffer Mode [MOVE: ON (Shifting)]")
-		elseif char == "d" then
-			vim.cmd("bdelete")
-			print("Buffer deleted.")
-		else
-			print("Exited buffer mode.")
-			break
-		end
-	end
-end, { desc = "Interactive Buffer Mode" })
+vim.keymap.set("n", "<leader>bm", _G.enter_buffer_mode, { desc = "Interactive Buffer Mode" })
